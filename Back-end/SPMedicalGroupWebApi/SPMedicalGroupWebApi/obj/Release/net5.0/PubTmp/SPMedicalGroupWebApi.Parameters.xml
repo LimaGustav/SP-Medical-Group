@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="senai-SP-Medical-Group" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\gugag\\OneDrive\\Área\ de\ Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-GroupWebApi\\Back-End\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\gugag\\OneDrive\\Área\ de\ Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

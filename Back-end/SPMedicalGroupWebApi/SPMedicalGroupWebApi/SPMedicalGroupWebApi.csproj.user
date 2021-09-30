@@ -4,7 +4,7 @@
     <Controller_SelectedScaffolderID>ApiControllerEmptyScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/Api</Controller_SelectedScaffolderCategoryPath>
     <ActiveDebugProfile>SPMedicalGroupWebApi</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\gugag\OneDrive\Área de Trabalho\Senai_\SP-Medical-Group\SP-Medical-GroupWebApi\Back-End\SPMedicalGroupWebApi\SPMedicalGroupWebApi\Properties\PublishProfiles\senai-SP-Medical-Group - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\gugag\OneDrive\Área de Trabalho\Senai_\SP-Medical-Group\SP-Medical-Group\Back-end\SPMedicalGroupWebApi\SPMedicalGroupWebApi\Properties\PublishProfiles\senai-SP-Medical-Group - Web Deploy1.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
