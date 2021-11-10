@@ -1,0 +1,162 @@
+
+
+body {
+}
+
+main {
+    background-image: url(../assets/fundo_consultas.png);
+    background-size: no-repeat;
+}
+
+header {
+    background: #FCFCFC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
+    height: 95px;
+}
+
+#header {
+    margin-top: 75px;
+    margin-bottom: 100px;
+}
+
+header nav {
+    height: 100%;
+}
+
+.logo_header {
+    width: 55px;
+}
+
+.ul_header {
+    width: 70%;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #544E4E;
+
+    text-transform: uppercase;
+}
+
+.ul_header li {
+    cursor: pointer;
+}
+
+
+.section_agendar{
+    height: max-content;
+
+    background: #F8F8F8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    height: 835px;
+}
+
+#agendar_card {
+    margin-bottom: 100px;
+}
+
+.container_form {
+    width: 100%;
+    height: 100%;
+}
+
+.section_agendar form {
+    width: 80%;
+    height: 100%;
+}
+
+.container_inputs {
+    height: 70%;
+    width: 100%;
+}
+
+.section_agendar input {
+    height: 70px;
+    max-width: 990px;
+    width: 100%;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    border: none;
+}
+
+.section_agendar select {
+    height: 70px;
+    max-width: 990px;
+    width: 100%;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    border: none;
+}
+
+.section_agendar input:focus{
+    outline:none;
+}
+
+.section_agendar select:focus{
+    outline:none;
+}
+
+.section_agendar button {
+    background: #83BEDF;
+    border-radius: 5px;
+
+    width: 200px;
+    height: 65px;
+
+    border: none;
+
+    cursor: pointer;
+} 
+
+footer {
+    background: #F8F8F8;
+    height: 215px;
+}
+
+.container_footer {
+    height: 100%;
+}
+
+.logo_footer {
+    width: 65px;
+}
+
+.sp_medical_footer {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    height: min-content;
+}
+
+.container_logo_footer {
+    text-align: center;
+}
+
+.container_social_media {
+    text-align: center;
+    height: 50%;
+}
+
+.social_footer {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.image_social {
+    width: 100px;
+}
