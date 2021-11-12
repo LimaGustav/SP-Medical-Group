@@ -1,12 +1,10 @@
 
 
 body {
-}
-
-main {
     background-image: url(../assets/fundo_consultas.png);
     background-size: no-repeat;
 }
+
 
 header {
     background: #FCFCFC;

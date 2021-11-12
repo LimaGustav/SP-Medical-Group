@@ -14,3 +14,11 @@ ul {
 
     margin: 0 auto;
 }
+
+#root {
+    height: 100%;
+}
+
+.router {
+    height: 100%;
+}

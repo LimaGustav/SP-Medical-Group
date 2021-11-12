@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gugag\\OneDrive\\Área de Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj": {}
+    "C:\\Users\\43017102807\\Desktop\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gugag\\OneDrive\\Área de Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj": {
+    "C:\\Users\\43017102807\\Desktop\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gugag\\OneDrive\\Área de Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\43017102807\\Desktop\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj",
         "projectName": "SPMedicalGroupWebApi",
-        "projectPath": "C:\\Users\\gugag\\OneDrive\\Área de Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj",
-        "packagesPath": "C:\\Users\\gugag\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gugag\\OneDrive\\Área de Trabalho\\Senai_\\SP-Medical-Group\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\obj\\",
+        "projectPath": "C:\\Users\\43017102807\\Desktop\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi.csproj",
+        "packagesPath": "C:\\Users\\43017102807\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\43017102807\\Desktop\\SP-Medical-Group\\Back-end\\SPMedicalGroupWebApi\\SPMedicalGroupWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gugag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\43017102807\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

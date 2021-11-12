@@ -8,13 +8,17 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import Login from './pages/login/App';
+import listarConsultas from "./pages/listarConsultas/listarConsultas"
 import reportWebVitals from './reportWebVitals';
+
+import "../src/assets/css/reset.css"
 
 const routing = (
   <Router>
-    <div>
+    <div className='router'>
       <Switch>
         <Route exact path="/" component={Login} />
+        <Route path="/listarConsultas" component={listarConsultas} />
       </Switch>
     </div>
   </Router>
