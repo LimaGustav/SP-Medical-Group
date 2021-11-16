@@ -30,6 +30,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SPMedicalGroupWebApi.Controllers.ConsultasController.GetById(System.Int32)">
+            <summary>
+            Busca uma consulta pelo Id
+            </summary>
+            <param name="id">Id da consulta a ser buscada</param>
+            <returns></returns>
+        </member>
         <member name="M:SPMedicalGroupWebApi.Controllers.ConsultasController.Post(SPMedicalGroupWebApi.ViewModels.ConsultaViewModel)">
             <summary>
             Cadastra uma nova consulta (Agenda consulta)

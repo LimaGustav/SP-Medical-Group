@@ -46,6 +46,28 @@ namespace SPMedicalGroupWebApi.Controllers
         }
 
         /// <summary>
+        /// Busca uma consulta pelo Id
+        /// </summary>
+        /// <param name="id">Id da consulta a ser buscada</param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                Consulta consultaBuscada = _consultaRepository.BuscarPorId(id);
+
+                if (consultaBuscada == null) return NotFound(new { mensagem = "Consulta não encontrada" });
+
+                return Ok(consultaBuscada);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro);
+            }
+        }
+
+        /// <summary>
         /// Cadastra uma nova consulta (Agenda consulta)
         /// </summary>
         /// <param name="novaConsultaModel">Dados da consulta a ser agendada</param>

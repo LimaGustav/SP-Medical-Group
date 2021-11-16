@@ -66,7 +66,59 @@ namespace SPMedicalGroupWebApi.Repositories
 
         public Consulta BuscarPorId(int idConsulta)
         {
-            return ctx.Consulta.FirstOrDefault(u => u.IdConsulta == idConsulta);
+            return ctx.Consulta
+                .Select(c => new Consulta()
+                {
+                    IdConsulta = c.IdConsulta,
+                    DataConsulta = c.DataConsulta,
+                    Descricao = c.Descricao,
+                    IdMedicoNavigation = new Medico()
+                    {
+                        IdMedico = c.IdMedicoNavigation.IdMedico,
+                        IdUsuario = c.IdMedicoNavigation.IdUsuario,
+                        Crm = c.IdMedicoNavigation.Crm,
+                        NomeMedico = c.IdMedicoNavigation.NomeMedico,
+                        IdClinicaNavigation = new Clinica()
+                        {
+                            NomeFantasia = c.IdMedicoNavigation.IdClinicaNavigation.NomeFantasia,
+                            Cnpj = c.IdMedicoNavigation.IdClinicaNavigation.Cnpj,
+                            RazaoSocial = c.IdMedicoNavigation.IdClinicaNavigation.RazaoSocial,
+                            Endereco = c.IdMedicoNavigation.IdClinicaNavigation.Endereco,
+                            Telefone = c.IdMedicoNavigation.IdClinicaNavigation.Telefone,
+                            Email = c.IdMedicoNavigation.IdClinicaNavigation.Email,
+                        },
+                        IdEspecialidadeNavigation = new Especialidade()
+                        {
+                            NomeEspecialidade = c.IdMedicoNavigation.IdEspecialidadeNavigation.NomeEspecialidade
+                        },
+                        IdUsuarioNavigation = new Usuario()
+                        {
+                            NomeUsuario = c.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario,
+                            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
+                        }
+                    },
+                    IdPacienteNavigation = new Paciente()
+                    {
+                        IdPaciente = c.IdPacienteNavigation.IdPaciente,
+                        DataNascimento = c.IdPacienteNavigation.DataNascimento,
+                        NomePaciente = c.IdPacienteNavigation.NomePaciente,
+                        Telefone = c.IdPacienteNavigation.Telefone,
+                        Rg = c.IdPacienteNavigation.Rg,
+                        Cpf = c.IdPacienteNavigation.Cpf,
+                        Endereco = c.IdPacienteNavigation.Endereco,
+                        IdUsuarioNavigation = new Usuario()
+                        {
+                            NomeUsuario = c.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario,
+                            Email = c.IdMedicoNavigation.IdUsuarioNavigation.Email
+                        }
+                    },
+                    IdSituacaoNavigation = new Situacao()
+                    {
+                        IdSituacao = c.IdSituacaoNavigation.IdSituacao,
+                        NomeSituacao = c.IdSituacaoNavigation.NomeSituacao
+                    }
+                })
+                .FirstOrDefault(u => u.IdConsulta == idConsulta);
         }
 
         public void Cadastrar(Consulta novaConsulta)

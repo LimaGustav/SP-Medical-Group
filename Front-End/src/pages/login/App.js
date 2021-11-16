@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import {usuarioAutenticado, parseJwt} from "../../services/auth"
 
+import { Link, useHistory } from 'react-router-dom';
+
 import "../../assets/css/login.css"
 import "../../assets/css/reset.css"
 import "../../assets/css/flexbox.css"
@@ -14,6 +16,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [erroMessage, setErroMessage] = useState('');
 
+
+  let history = useHistory();
 
   // Fuction that calls the API to Login
   function log(event) {
@@ -38,6 +42,8 @@ function App() {
           setSenha('')
 
           setEmail('')
+
+          history.push('/listarConsultas')
         }
       }).catch(erro => {
         console.log(erro)

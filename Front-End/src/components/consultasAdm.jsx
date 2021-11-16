@@ -1,27 +1,89 @@
-
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import * as React from 'react';
-import {usuarioAutenticado, parseJwt} from "../../services/auth"
+import {usuarioAutenticado, parseJwt} from "../services/auth"
 
-import "../../assets/css/reset.css"
-import "../../assets/css/flexbox.css"
-import "../../assets/css/style.css"
-import HeaderJS from "../../components/header"
-import CardVerde from "../../components/cardVerde"
-import ListarAdm from "../../components/consultasAdm"
-import Listar from "../../components/consultas"
+import "../assets/css/reset.css"
+import "../assets/css/flexbox.css"
+import "../assets/css/style.css"
+
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
+    
 
 
-export default function ListarConsultas() {
+export default function ListarConsultasAdm(){
+    const [listaConsultas, setListaConsultas] = useState([]);
+    const [consultaClicada, setConsultaClicada] = useState(0);
+    const [consultaBuscada, setConsultaBuscada] = useState({});
+    const [descricaoAlterada, setDescricaoAlterada] = useState('');
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 600,
+        height: 400,
+        borderRadius: 5,
+        bgcolor: 'background.paper',
+        boxShadow: 24,
+        p: 4,
+    };
+
+    function buscarPorId () {
+        axios('http://localhost:5000/api/consultas/' + consultaClicada, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setConsultaBuscada(response.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = async (event) => {
+        await setConsultaClicada(event.target.name)
+        await setOpen(true)         
+    };
+    buscarPorId()
+    const handleClose = () => setOpen(false);
+
+    function buscarConsultasAdm() {
+        axios('http://localhost:5000/api/consultas', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setListaConsultas(response.data)
+
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    function AlterarDescricao(event) {
+        event.preventDefault();
+        axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/'+consultaClicada,{
+            descricao: descricaoAlterada
+        },{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
+    }
+
+    useEffect(buscarConsultasAdm, [])
 
     return (
-        <div>
-            <HeaderJS />
-            <main className='column space_around'>
-                <CardVerde />
-
-                {parseJwt().role === '2' ? <ListarAdm/> : <Listar/>}
-
-                {/* <section className="grid">
+        <section className="grid">
                     <div className="flex wrap space_between">
                         {listaConsultas.map(consulta => {
                             return (
@@ -76,8 +138,6 @@ export default function ListarConsultas() {
                             </Box>
                         </Modal>
                     </div>
-                </section> */}
-            </main>
-        </div>
+                </section>
     )
 }

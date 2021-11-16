@@ -8,7 +8,8 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import Login from './pages/login/App';
-import listarConsultas from "./pages/listarConsultas/listarConsultas"
+import ListarConsultas from "./pages/listarConsultas/listarConsultas"
+import CadastrarConsultas from './pages/cadastrarConsultas/cadastrarConsultas';
 import reportWebVitals from './reportWebVitals';
 
 import "../src/assets/css/reset.css"
@@ -18,7 +19,8 @@ const routing = (
     <div className='router'>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route path="/listarConsultas" component={listarConsultas} />
+        <Route path="/listarConsultas" component={ListarConsultas} />
+        <Route path="/agendarConsulta" component={CadastrarConsultas} />
       </Switch>
     </div>
   </Router>
