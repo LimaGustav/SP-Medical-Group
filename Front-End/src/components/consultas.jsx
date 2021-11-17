@@ -77,7 +77,10 @@ export default function ListarConsultasAdm(){
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
         })
-        .then(setDescricaoAlterada(''))
+        .then(() => {
+            setDescricaoAlterada('?')
+            console.log(descricaoAlterada)
+        })
         .catch(erro => {
             console.log(erro)
             setDescricaoAlterada('')

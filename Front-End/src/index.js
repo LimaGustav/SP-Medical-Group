@@ -13,6 +13,20 @@ import CadastrarConsultas from './pages/cadastrarConsultas/cadastrarConsultas';
 import reportWebVitals from './reportWebVitals';
 
 import "../src/assets/css/reset.css"
+import {usuarioAutenticado, parseJwt} from "./services/auth"
+
+const PermissaoAdm = ({ component: Component }) => (
+  <Route
+    render={(props) =>
+      usuarioAutenticado() && parseJwt().role === '2' ? (
+        // operador spread
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);
 
 const routing = (
   <Router>
@@ -20,7 +34,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/listarConsultas" component={ListarConsultas} />
-        <Route path="/agendarConsulta" component={CadastrarConsultas} />
+        <PermissaoAdm path="/agendarConsulta" component={CadastrarConsultas} />
       </Switch>
     </div>
   </Router>
