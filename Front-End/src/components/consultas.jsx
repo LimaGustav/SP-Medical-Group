@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import * as React from 'react';
-import {usuarioAutenticado, parseJwt} from "../services/auth"
+import { usuarioAutenticado, parseJwt } from "../services/auth"
 
 import "../assets/css/reset.css"
 import "../assets/css/flexbox.css"
@@ -10,10 +10,10 @@ import "../assets/css/style.css"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
-    
 
 
-export default function ListarConsultasAdm(){
+
+export default function ListarConsultasAdm() {
     const [listaConsultas, setListaConsultas] = useState([]);
     const [consultaClicada, setConsultaClicada] = useState(0);
     const [consultaBuscada, setConsultaBuscada] = useState({});
@@ -32,7 +32,7 @@ export default function ListarConsultasAdm(){
         p: 4,
     };
 
-    function buscarPorId () {
+    function buscarPorId() {
         axios('http://localhost:5000/api/consultas/' + consultaClicada, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -47,11 +47,9 @@ export default function ListarConsultasAdm(){
     }
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = async (event) => {
-        await setConsultaClicada(event.target.name)
-        await setOpen(true)         
+    const handleOpen = () => {
+        setOpen(true)
     };
-    buscarPorId()
     const handleClose = () => setOpen(false);
 
     function buscarConsultas() {
@@ -70,81 +68,85 @@ export default function ListarConsultasAdm(){
     }
     function AlterarDescricao(event) {
         event.preventDefault();
-        axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/'+consultaClicada,{
+        axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/' + consultaClicada, {
             descricao: descricaoAlterada
-        },{
+        }, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
         })
-        .then(() => {
-            setDescricaoAlterada('?')
-            console.log(descricaoAlterada)
-        })
-        .catch(erro => {
-            console.log(erro)
-            setDescricaoAlterada('')
-        })
+            .then(() => {
+                setDescricaoAlterada('?')
+                console.log(descricaoAlterada)
+            })
+            .catch(erro => {
+                console.log(erro)
+                setDescricaoAlterada('')
+            })
     }
 
     useEffect(buscarConsultas, [])
+    useEffect(() => {
+        buscarPorId()
+        handleOpen()
+    }, [consultaClicada])
 
     return (
         <section className="grid">
-                    <div className="flex wrap space_between">
-                        {listaConsultas.map(consulta => {
-                            return (
-                                <div className="card_consulta column space_around align_center">
-                                    <p>Paciente: {consulta.idPacienteNavigation.nomePaciente}</p>
-                                    <p>Médico: {consulta.idMedicoNavigation.nomeMedico}</p>
-                                    <p>Data: {Intl.DateTimeFormat("pt-BR", {
-                                        year: 'numeric', month: 'long', day: 'numeric'
-                                    }).format(new Date(consulta.dataConsulta))}</p>
-                                    <button name={consulta.idConsulta} onClick={handleOpen}>Ver detalhes</button>
-                                </div>
-                            )
-                        })}
-                        <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                {
-                                    consultaBuscada.idPacienteNavigation !== undefined && 
-                                    
-                                    <div>
-                                        <p>Paciente: {consultaBuscada.idPacienteNavigation.nomePaciente}</p>
+            <div className="flex wrap space_between">
+                {listaConsultas.map(consulta => {
+                    return (
+                        <div className="card_consulta column space_around align_center">
+                            <p>Paciente: {consulta.idPacienteNavigation.nomePaciente}</p>
+                            <p>Médico: {consulta.idMedicoNavigation.nomeMedico}</p>
+                            <p>Data: {Intl.DateTimeFormat("pt-BR", {
+                                year: 'numeric', month: 'long', day: 'numeric'
+                            }).format(new Date(consulta.dataConsulta))}</p>
+                            <button name={consulta.idConsulta} onClick={(campo) => {setConsultaClicada(campo.target.name)}}>Ver detalhes</button>
+                        </div>
+                    )
+                })}
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        {
+                            consultaBuscada.idPacienteNavigation !== undefined &&
 
-                                        <p>Data Nascimento: {Intl.DateTimeFormat("pt-BR", {
-                                            year: 'numeric', month: 'long', day: 'numeric'
-                                        }).format(new Date(consultaBuscada.idPacienteNavigation.dataNascimento))}</p>
+                            <div>
+                                <p>Paciente: {consultaBuscada.idPacienteNavigation.nomePaciente}</p>
 
-                                        <p>Médico: {consultaBuscada.idMedicoNavigation.nomeMedico}</p>
+                                <p>Data Nascimento: {Intl.DateTimeFormat("pt-BR", {
+                                    year: 'numeric', month: 'long', day: 'numeric'
+                                }).format(new Date(consultaBuscada.idPacienteNavigation.dataNascimento))}</p>
 
-                                        <p>Especialidade: {consultaBuscada.idMedicoNavigation.idEspecialidadeNavigation.nomeEspecialidade}</p>
+                                <p>Médico: {consultaBuscada.idMedicoNavigation.nomeMedico}</p>
 
-                                        <p>Data: {Intl.DateTimeFormat("pt-BR", {
-                                            year: 'numeric', month: 'long', day: 'numeric'
-                                        }).format(new Date(consultaBuscada.dataConsulta))}</p>
+                                <p>Especialidade: {consultaBuscada.idMedicoNavigation.idEspecialidadeNavigation.nomeEspecialidade}</p>
 
-                                        <p>Situação: <span>{consultaBuscada.idSituacaoNavigation.nomeSituacao}</span></p>
+                                <p>Data: {Intl.DateTimeFormat("pt-BR", {
+                                    year: 'numeric', month: 'long', day: 'numeric'
+                                }).format(new Date(consultaBuscada.dataConsulta))}</p>
 
-                                        <p>Descricao: {consultaBuscada.descricao}</p>
+                                <p>Situação: <span>{consultaBuscada.idSituacaoNavigation.nomeSituacao}</span></p>
 
-                                        {parseJwt().role === '3' &&
-                                        <form onSubmit={AlterarDescricao}>
-                                            <input onChange={(campo) => {setDescricaoAlterada(campo.target.value)}} type="text" />
-                                            <button type='submit'>Alterar descrição</button>
-                                        </form>
-                                         }          
-                                    </div>
+                                <p>Descricao: {consultaBuscada.descricao}</p>
+
+                                {parseJwt().role === '3' &&
+                                    <form onSubmit={AlterarDescricao}>
+                                        <input onChange={(campo) => { setDescricaoAlterada(campo.target.value) }} type="text" />
+                                        <button type='submit'>Alterar descrição</button>
+                                    </form>
                                 }
-                                
-                            </Box>
-                        </Modal>
-                    </div>
-                </section>
+                            </div>
+                        }
+
+                    </Box>
+                </Modal>
+            </div>
+        </section>
     )
 }
