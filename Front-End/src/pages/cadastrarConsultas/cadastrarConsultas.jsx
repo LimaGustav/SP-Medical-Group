@@ -10,7 +10,6 @@ export default function CadastrarConsultas() {
 
     const [listaMedicos, setListaMedicos] = useState( [] );
     const [listaPacientes, setListaPacientes] = useState( [] );
-    const [listaClinicas, setListaClinicas] = useState( [] );
     const [_idPaciente, setIdPaciente] = useState(0);
     const [_idMedico, setIdMedico] = useState(0);
     const [_data, setData] = useState(new Date())
@@ -47,17 +46,6 @@ export default function CadastrarConsultas() {
         })
     }
 
-    function BuscarClinica() {
-        axios('http://localhost:5000/api/clinicas')
-        .then(response => {
-            if (response.status === 200) {
-                console.log('clinica buscados')
-                setListaClinicas(response.data)
-            }
-        }).catch( erro => {
-            console.log(erro)
-        })
-    }
     
     let consulta = {
         idPaciente : _idPaciente,
@@ -87,9 +75,6 @@ export default function CadastrarConsultas() {
 
     useEffect(BuscarMedicos, [])
     useEffect(BuscarPacientes, [])
-    useEffect(BuscarClinica, [])
-
-
 
     return (
         <div>

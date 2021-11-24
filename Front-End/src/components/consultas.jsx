@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import * as React from 'react';
-import { usuarioAutenticado, parseJwt } from "../services/auth"
+import { parseJwt } from "../services/auth"
 
 import "../assets/css/reset.css"
 import "../assets/css/flexbox.css"
@@ -32,8 +32,9 @@ export default function ListarConsultasAdm() {
         p: 4,
     };
 
-    function buscarPorId() {
-        axios('http://localhost:5000/api/consultas/' + consultaClicada, {
+    function buscarPorId(id) {
+        setConsultaClicada(id) 
+        axios('http://localhost:5000/api/consultas/' + id, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -42,7 +43,7 @@ export default function ListarConsultasAdm() {
                 if (response.status === 200) {
                     setConsultaBuscada(response.data)
                 }
-            })
+            }).then(handleOpen())
             .catch(erro => console.log(erro))
     }
 
@@ -66,6 +67,7 @@ export default function ListarConsultasAdm() {
             })
             .catch(erro => console.log(erro))
     }
+
     function AlterarDescricao(event) {
         event.preventDefault();
         axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/' + consultaClicada, {
@@ -76,8 +78,8 @@ export default function ListarConsultasAdm() {
             }
         })
             .then(() => {
-                setDescricaoAlterada('?')
-                console.log(descricaoAlterada)
+                buscarPorId(consultaClicada)
+                setDescricaoAlterada('')
             })
             .catch(erro => {
                 console.log(erro)
@@ -86,10 +88,6 @@ export default function ListarConsultasAdm() {
     }
 
     useEffect(buscarConsultas, [])
-    useEffect(() => {
-        buscarPorId()
-        handleOpen()
-    }, [consultaClicada])
 
     return (
         <section className="grid">
@@ -102,7 +100,7 @@ export default function ListarConsultasAdm() {
                             <p>Data: {Intl.DateTimeFormat("pt-BR", {
                                 year: 'numeric', month: 'long', day: 'numeric'
                             }).format(new Date(consulta.dataConsulta))}</p>
-                            <button name={consulta.idConsulta} onClick={(campo) => {setConsultaClicada(campo.target.name)}}>Ver detalhes</button>
+                            <button name={consulta.idConsulta} onClick={() => buscarPorId(consulta.idConsulta)}>Ver detalhes</button>
                         </div>
                     )
                 })}
@@ -137,7 +135,7 @@ export default function ListarConsultasAdm() {
 
                                 {parseJwt().role === '3' &&
                                     <form onSubmit={AlterarDescricao}>
-                                        <input onChange={(campo) => { setDescricaoAlterada(campo.target.value) }} type="text" />
+                                        <input value={descricaoAlterada} onChange={(campo) => { setDescricaoAlterada(campo.target.value) }} type="text" />
                                         <button type='submit'>Alterar descrição</button>
                                     </form>
                                 }

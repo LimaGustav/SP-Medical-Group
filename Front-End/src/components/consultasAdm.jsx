@@ -32,8 +32,9 @@ export default function ListarConsultasAdm() {
         p: 4,
     };
 
-    function buscarPorId(event) {
-        axios('http://localhost:5000/api/consultas/' + consultaClicada, {
+    function buscarPorId(id) {
+        setConsultaClicada(id) 
+        axios('http://localhost:5000/api/consultas/' + id, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -42,18 +43,12 @@ export default function ListarConsultasAdm() {
                 if (response.status === 200) {
                     setConsultaBuscada(response.data)
                 }
-            })
+            }).then(handleOpen())
             .catch(erro => console.log(erro))
     }
 
     const [open, setOpen] = React.useState(false);
 
-
-    // function searchWhenOpen(event) {
-    //     setConsultaClicada(event.target.name)
-    //     buscarPorId()
-    //     handleOpen()
-    // }
 
     const handleOpen = () => {
         setOpen(true)
@@ -83,15 +78,17 @@ export default function ListarConsultasAdm() {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
+        }).then(() => {
+            buscarPorId(consultaClicada)
+            setDescricaoAlterada('')
+        })
+        .catch(erro => {
+            console.log(erro)
+            setDescricaoAlterada('')
         })
     }
 
     useEffect(buscarConsultasAdm, [])
-    
-    useEffect(() => {
-        buscarPorId()
-        handleOpen()
-    }, [consultaClicada])
 
     return (
         <section className="grid">
@@ -104,7 +101,7 @@ export default function ListarConsultasAdm() {
                             <p>Data: {Intl.DateTimeFormat("pt-BR", {
                                 year: 'numeric', month: 'long', day: 'numeric'
                             }).format(new Date(consulta.dataConsulta))}</p>
-                            <button name={consulta.idConsulta} onClick={(campo) => setConsultaClicada(campo.target.name)}>Ver detalhes</button>
+                            <button name={consulta.idConsulta} onClick={() => buscarPorId(consulta.idConsulta)}>Ver detalhes</button>
                         </div>
                     )
                 })}
@@ -136,13 +133,6 @@ export default function ListarConsultasAdm() {
                                 <p>Situação: <span>{consultaBuscada.idSituacaoNavigation.nomeSituacao}</span></p>
 
                                 <p>Descricao: {consultaBuscada.descricao}</p>
-
-                                {parseJwt().role === '3' &&
-                                    <form onSubmit={AlterarDescricao}>
-                                        <input onChange={(campo) => { setDescricaoAlterada(campo.target.value) }} type="text" />
-                                        <button type='submit'>Alterar descrição</button>
-                                    </form>
-                                }
                             </div>
                         }
 
