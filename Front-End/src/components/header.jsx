@@ -17,7 +17,7 @@ export default function header() {
     return (
         <div>
             <header id="header" className="grid">
-                <nav className="flex align_center space_around">
+                <nav className="nav_header flex align_center space_around">
                     <Link to='/'><img className="logo_header" src={logo} alt="" /></Link>
                     <ul className="ul_header flex align_center space_between">
                         <li>especialidades</li>

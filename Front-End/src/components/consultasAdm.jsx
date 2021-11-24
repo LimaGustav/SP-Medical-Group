@@ -70,23 +70,7 @@ export default function ListarConsultasAdm() {
             .catch(erro => console.log(erro))
     }
 
-    function AlterarDescricao(event) {
-        event.preventDefault();
-        axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/' + consultaClicada, {
-            descricao: descricaoAlterada
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        }).then(() => {
-            buscarPorId(consultaClicada)
-            setDescricaoAlterada('')
-        })
-        .catch(erro => {
-            console.log(erro)
-            setDescricaoAlterada('')
-        })
-    }
+    
 
     useEffect(buscarConsultasAdm, [])
 

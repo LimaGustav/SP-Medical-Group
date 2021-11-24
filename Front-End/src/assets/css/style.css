@@ -262,3 +262,31 @@ footer {
 
     color: white;
 }
+
+.container_modal {
+    height: 100%;
+
+}
+
+.form_modal {
+    height: min-content;
+}
+
+
+@media (max-width: 1150px) {
+    .ul_header {
+        font-size: 16px;
+    }
+
+    .nav_header {
+        justify-content: space-evenly;
+    }
+}
+
+@media (max-width: 1150px) {
+    /*
+        Menu hamburger
+    */
+
+
+}

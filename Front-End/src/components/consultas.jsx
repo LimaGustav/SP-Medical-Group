@@ -114,7 +114,7 @@ export default function ListarConsultasAdm() {
                         {
                             consultaBuscada.idPacienteNavigation !== undefined &&
 
-                            <div>
+                            <div className="container_modal flex column space_evenly align_center">
                                 <p>Paciente: {consultaBuscada.idPacienteNavigation.nomePaciente}</p>
 
                                 <p>Data Nascimento: {Intl.DateTimeFormat("pt-BR", {
@@ -134,7 +134,7 @@ export default function ListarConsultasAdm() {
                                 <p>Descricao: {consultaBuscada.descricao}</p>
 
                                 {parseJwt().role === '3' &&
-                                    <form onSubmit={AlterarDescricao}>
+                                    <form className="form_modal flex column" onSubmit={AlterarDescricao}>
                                         <input value={descricaoAlterada} onChange={(campo) => { setDescricaoAlterada(campo.target.value) }} type="text" />
                                         <button type='submit'>Alterar descrição</button>
                                     </form>
