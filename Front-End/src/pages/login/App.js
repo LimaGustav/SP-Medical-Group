@@ -35,13 +35,13 @@ function App() {
         if (response.status === 200) {
           localStorage.setItem('usuario-login', response.data.token)
 
-          setIsLoading(false)
-
           let base64 = localStorage.getItem('usuario-login').split('.')[1];
 
           setSenha('')
 
           setEmail('')
+
+          setIsLoading(false)
 
           history.push('/listarConsultas')
         }
@@ -51,6 +51,10 @@ function App() {
         setSenha('')
 
         setEmail('')
+
+        setErroMessage("Email ou senha inválidos")
+
+        setIsLoading(false)
       })
 
   }
@@ -65,7 +69,15 @@ function App() {
               <input onChange={(campo) => setEmail(campo.target.value)} value={email} name='email' placeholder="EMAIL" type="email" />
               <input onChange={(campo) => setSenha(campo.target.value)} value={senha} name='senha' placeholder="SENHA" type="password" />
             </div>
-            <button className="btn_login" type="submit">Login</button>
+            <span className='red'>{erroMessage === '' ? '' : 'Email ou senha inválidos'}</span>
+
+            {isLoading && (<button disabled className="btn_login" type="submit">Loading...</button>)}
+
+            {!isLoading && (<button 
+                              disabled={email === '' || senha == 'none' ? '' : ''} 
+                              className="btn_login" 
+                              type="submit">Login</button>)}
+            {/* <button className="btn_login" type="submit">Login</button> */}
           </form>
         </div>
       </section>
