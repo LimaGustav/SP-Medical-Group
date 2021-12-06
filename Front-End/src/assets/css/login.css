@@ -96,6 +96,11 @@ input:focus::placeholder {
     cursor: pointer;
 }
 
+
+.btn_login:disabled{
+    cursor: not-allowed;
+    background-color:rgba(92, 92, 92, 0.25)
+}
 .red {
     color: red;
 }

@@ -50,8 +50,6 @@ function App() {
 
         setSenha('')
 
-        setEmail('')
-
         setErroMessage("Email ou senha inválidos")
 
         setIsLoading(false)

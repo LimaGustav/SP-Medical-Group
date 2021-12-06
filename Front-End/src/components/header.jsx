@@ -1,6 +1,6 @@
 
-import { Link, useHistory } from 'react-router-dom';
-import { usuarioAutenticado, parseJwt } from "../services/auth"
+import { Link } from 'react-router-dom';
+import { parseJwt } from "../services/auth"
 
 import "../assets/css/reset.css"
 import "../assets/css/flexbox.css"
