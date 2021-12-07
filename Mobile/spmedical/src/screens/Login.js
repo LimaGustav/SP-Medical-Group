@@ -15,8 +15,8 @@ import { useNavigation } from '@react-navigation/core';
 import api from '../services/api'
 
 export default function Login() {
-    const [email, setEmail] = useState('adm@email.com')
-    const [senha, setSenha] = useState('adm12345')
+    const [email, setEmail] = useState('ricardo.lemos@spmedicalgroup.com.br')
+    const [senha, setSenha] = useState('lemos1234')
     const navigation = new useNavigation();
 
     realizarLogin = async () => {
@@ -31,7 +31,7 @@ export default function Login() {
                 // console.warn(token)
                 // Redireciona
                 await AsyncStorage.setItem('userToken', token);
-                // await navigation.navigate('Main')
+                await navigation.navigate('Main')
             }
 
         } catch (error) {
