@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
 import * as React from 'react';
 import { parseJwt } from "../services/auth"
 
@@ -9,6 +8,8 @@ import "../assets/css/style.css"
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+
+import api from '../services/api'
 
 
 
@@ -34,7 +35,7 @@ export default function ListarConsultasAdm() {
 
     function buscarPorId(id) {
         setConsultaClicada(id) 
-        axios('http://localhost:5000/api/consultas/' + id, {
+        api.get('/consultas/' + id, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -54,7 +55,7 @@ export default function ListarConsultasAdm() {
     const handleClose = () => setOpen(false);
 
     function buscarConsultas() {
-        axios('http://localhost:5000/api/Consultas/minhas', {
+        api.get('/Consultas/minhas', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -70,7 +71,7 @@ export default function ListarConsultasAdm() {
 
     function AlterarDescricao(event) {
         event.preventDefault();
-        axios.patch('http://localhost:5000/api/Consultas/alterar/descricao/' + consultaClicada, {
+        api.patch('/Consultas/alterar/descricao/' + consultaClicada, {
             descricao: descricaoAlterada
         }, {
             headers: {
@@ -91,7 +92,7 @@ export default function ListarConsultasAdm() {
 
     return (
         <section className="grid">
-            <div className="flex wrap space_between">
+            <div className="flex wrap space_between consultas">
                 {listaConsultas.map(consulta => {
                     return (
                         <div className="card_consulta column space_around align_center">

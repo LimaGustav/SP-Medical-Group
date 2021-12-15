@@ -21,14 +21,20 @@ header {
 
 header nav {
     height: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .logo_header {
     width: 55px;
 }
 
+.container_header {
+    width: 40%;
+}
+
 .ul_header {
-    width: 70%;
+    width: 100%;
 
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -96,6 +102,7 @@ header nav {
     border: none;
 
     font-size: 16px;
+    padding-left: 10px;
 }
 
 .section_agendar input {
@@ -110,6 +117,7 @@ header nav {
 
     font-size: 16px;
     background-color: white;
+    padding-left: 10px;
 }
 
 .section_agendar input:focus{
@@ -278,15 +286,39 @@ footer {
         font-size: 16px;
     }
 
-    .nav_header {
+    /* .nav_header {
         justify-content: space-evenly;
-    }
+    } */
 }
 
-@media (max-width: 1150px) {
-    /*
-        Menu hamburger
-    */
+@media (max-width: 1000px) {
+    .container_header {
+        width: 60%;
+    }
 
+}
+
+@media (max-width: 690px) {
+    .consultas {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 620px) {
+    .container_header {
+        width: 70%;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .container_header {
+        width: 100%;
+    }
+
+    .logo_header {
+        display: none;
+    }
 
 }

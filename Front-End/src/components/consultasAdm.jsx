@@ -10,14 +10,14 @@ import "../assets/css/style.css"
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
+import api from '../services/api'
+
 
 
 
 export default function ListarConsultasAdm() {
     const [listaConsultas, setListaConsultas] = useState([]);
-    const [consultaClicada, setConsultaClicada] = useState(0);
     const [consultaBuscada, setConsultaBuscada] = useState({});
-    const [descricaoAlterada, setDescricaoAlterada] = useState('');
 
     const style = {
         position: 'absolute',
@@ -33,8 +33,7 @@ export default function ListarConsultasAdm() {
     };
 
     function buscarPorId(id) {
-        setConsultaClicada(id) 
-        axios('http://localhost:5000/api/consultas/' + id, {
+        api.get('/consultas/' + id, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -56,7 +55,7 @@ export default function ListarConsultasAdm() {
     const handleClose = () => setOpen(false);
 
     function buscarConsultasAdm() {
-        axios('http://localhost:5000/api/consultas', {
+        api.get('/consultas', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -76,7 +75,7 @@ export default function ListarConsultasAdm() {
 
     return (
         <section className="grid">
-            <div className="flex wrap space_between">
+            <div className="flex wrap space_between consultas">
                 {listaConsultas.map(consulta => {
                     return (
                         <div className="card_consulta column space_around align_center">

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
-import {usuarioAutenticado, parseJwt} from "../../services/auth"
 
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
+import api from '../../services/api'
 
 import "../../assets/css/login.css"
 import "../../assets/css/reset.css"
@@ -11,8 +10,8 @@ import "../../assets/css/flexbox.css"
 import logo from "../../assets/img/logo_spmedgroup_v1.png"
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState('adm@email.com');
+  const [senha, setSenha] = useState('adm12345');
   const [isLoading, setIsLoading] = useState(false);
   const [erroMessage, setErroMessage] = useState('');
 
@@ -26,16 +25,13 @@ function App() {
     setErroMessage('')
     setIsLoading(true)
 
-    axios
-      .post('http://localhost:5000/api/login', {
+    api.post('/login', {
         email: email,
         senha: senha
       })
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem('usuario-login', response.data.token)
-
-          let base64 = localStorage.getItem('usuario-login').split('.')[1];
 
           setSenha('')
 

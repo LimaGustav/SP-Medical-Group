@@ -17,22 +17,25 @@ export default function header() {
     return (
         <div>
             <header id="header" className="grid">
-                <nav className="nav_header flex align_center space_around">
+                <nav className="nav_header flex align_center space_between">
+
                     <Link to='/'><img className="logo_header" src={logo} alt="" /></Link>
-                    <ul className="ul_header flex align_center space_between">
-                        <li>especialidades</li>
-                        <li>unidades</li>
-                        <li>medicos</li>
-                        <Link to='/listarConsultas'>
-                            <li>consultas</li>
-                        </Link>
-                        {parseJwt().role === '2' && <Link to='/agendarConsulta'>
-                            <li>cadastrar</li>
-                        </Link>}
-                        <Link onClick={() => Logout()} to='/'>
-                            <li>sair</li>
-                        </Link>
-                    </ul>
+
+                    <div className='container_header space_between'>
+                        <ul className="ul_header flex align_center space_between">
+                            <Link to='/listarConsultas'>
+                                <li>consultas</li>
+                            </Link>
+                            {parseJwt().role === '2' && <Link to='/agendarConsulta'>
+                                <li>cadastrar</li>
+                            </Link>}
+                            {parseJwt().role === '3' && <li>medico</li>}
+                            <Link onClick={() => Logout()} to='/'>
+                                <li>sair</li>
+                            </Link>
+                        </ul>
+                    </div>
+
                 </nav>
             </header>
         </div>

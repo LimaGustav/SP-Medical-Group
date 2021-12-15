@@ -6,16 +6,18 @@ import "../../assets/css/flexbox.css"
 import "../../assets/css/style.css"
 import HeaderJS from "../../components/header"
 
+import api from "../../services/api"
+
 export default function CadastrarConsultas() {
 
     const [listaMedicos, setListaMedicos] = useState( [] );
     const [listaPacientes, setListaPacientes] = useState( [] );
-    const [_idPaciente, setIdPaciente] = useState(0);
-    const [_idMedico, setIdMedico] = useState(0);
-    const [_data, setData] = useState(new Date())
+    const [idPaciente, setIdPaciente] = useState(0);
+    const [idMedico, setIdMedico] = useState(0);
+    const [data, setData] = useState(new Date())
 
     function BuscarMedicos() {
-        axios('http://localhost:5000/api/Medicos', {
+        api.get('/Medicos', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -31,7 +33,7 @@ export default function CadastrarConsultas() {
     }
 
     function BuscarPacientes() {
-        axios('http://localhost:5000/api/pacientes', {
+        api.get('/pacientes', {
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -48,9 +50,9 @@ export default function CadastrarConsultas() {
 
     
     let consulta = {
-        idPaciente : _idPaciente,
-        idMedico : _idMedico,
-        dataConsulta : _data
+        idPaciente : idPaciente,
+        idMedico : idMedico,
+        dataConsulta : data
     }
 
     // let consulta = {
@@ -61,7 +63,7 @@ export default function CadastrarConsultas() {
 
     function CadastrarConsutla(event) {
         event.preventDefault();
-        axios.post('http://localhost:5000/api/consultas', consulta,{
+        api.post('/consultas', consulta,{
             headers : {
                 'Authorization' : 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -69,6 +71,9 @@ export default function CadastrarConsultas() {
         .then(response => {
             if (response.status === 201) {
                 console.log('Consulta agendada')
+                setIdPaciente(0);
+                setData(new Date());
+                setIdMedico(0)
             }
         }).catch(erro => {console.log(erro)})
     }
@@ -86,7 +91,7 @@ export default function CadastrarConsultas() {
 
                             <div className="container_inputs column space_between align_center">
 
-                                <select onChange={(campo) => setIdMedico(campo.target.value)} id='select_medico' name="medico">
+                                <select onChange={(campo) => setIdMedico(campo.target.value)}  value={idMedico}id='select_medico' name="medico">
                                     <option value="0">Selecione o médico</option>
 
                                     {listaMedicos.map(medico => {
@@ -97,7 +102,7 @@ export default function CadastrarConsultas() {
                                 </select>
 
 
-                                <select onChange={(campo) => setIdPaciente(campo.target.value)} id='select_paciente' name="paciente">
+                                <select onChange={(campo) => setIdPaciente(campo.target.value)} value={idPaciente} id='select_paciente' name="paciente">
                                     <option value="0">Selecione o paciente</option>
                                     {listaPacientes.map(paciente => {
                                         return (
@@ -107,7 +112,7 @@ export default function CadastrarConsultas() {
                                 </select>
 
 
-                                <input onChange={(campo) => setData(campo.target.value)} id='input_data' placeholder='Escolha da data' type="date" name=""/>
+                                <input onChange={(campo) => setData(campo.target.value)} value={data} id='input_data' placeholder='Escolha da data' type="date" name=""/>
                             </div>
 
                             <button type="submit">Agendar</button>
