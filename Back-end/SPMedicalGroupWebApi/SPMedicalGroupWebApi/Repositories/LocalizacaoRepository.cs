@@ -22,12 +22,13 @@ namespace SPMedicalGroupWebApi.Repositories
 
         public bool Cadastrar(Localizacao novaLocalizacao)
         {
-            throw new NotImplementedException();
+            _localizacao.InsertOne(novaLocalizacao);
+            return true;
         }
 
         public List<Localizacao> ListarTodas()
         {
-            
+            return _localizacao.Find(localizacao => true).ToList();
         }
     }
 }

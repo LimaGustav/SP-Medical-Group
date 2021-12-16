@@ -3,6 +3,7 @@
 body {
     background-image: url(../img/fundo_consultas.png);
     background-size: no-repeat;
+    background-attachment: fixed;
 }
 
 
@@ -12,6 +13,7 @@ header {
     border-radius: 15px;
 
     height: 95px;
+
 }
 
 #header {
