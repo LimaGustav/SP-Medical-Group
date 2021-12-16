@@ -29,7 +29,10 @@ export default function header() {
                             {parseJwt().role === '2' && <Link to='/agendarConsulta'>
                                 <li>cadastrar</li>
                             </Link>}
-                            {parseJwt().role === '3' && <li>medico</li>}
+                            {parseJwt().role === '3' && <Link to='/'>
+                                <li>medico</li>
+                            </Link>}
+                            {parseJwt().role === '1' && <li>paciente</li>}
                             <Link onClick={() => Logout()} to='/'>
                                 <li>sair</li>
                             </Link>
